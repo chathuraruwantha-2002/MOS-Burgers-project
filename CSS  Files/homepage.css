@@ -26,8 +26,34 @@
     background-color: #fdb813;
     border-radius: 8px;
     padding: 5px;
-    box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+    box-shadow: 1px 1px 3px rgba(252, 0, 0, 0.2);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-animation {
+    border-radius: 100px;
+    padding: 5px;
+    box-shadow: 1px 1px 3px rgba(252, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.profile-animation:hover {
+    transform: scale(1.10);
+    box-shadow: 2px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.dropdown-menu {
+    border-radius: 8px;
+    padding: 5px;
+    box-shadow: 1px 1px 3px rgba(252, 0, 0, 0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.dropdown-item:hover:active {
+    color: #000;
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 5px;
+    box-shadow: 1px 1px 3px rgba(252, 0, 0, 0.2);
 }
 
 .icon-btn img {
@@ -44,5 +70,41 @@
     width: 50px;
     height: 50px;
     border-radius: 50%;
+}
+
+/* Calendar CSS */
+
+.day {
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.day:first-child {
+    overflow: visible;
+    padding-left: 12px;
+}
+
+header {
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.row.border {
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+}
+
+.container-calender-header {
+    background-color: rgb(246, 135, 24);
+    color: black;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.container-calender-header h5 {
+    color: rgb(0, 0, 0);
+    font-weight: bold;
 }
 
