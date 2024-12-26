@@ -143,4 +143,12 @@ let productList = {
     ],
   };
 
+  export function getProducts() {
+    return productList; 
+  }
+
+  export function setProduct(newProduct, category) {
+    productList[category].push(newProduct);
+  }
+
   

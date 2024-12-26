@@ -85,3 +85,15 @@
 .cards-grid-rounded {
     border-radius: 15px;
 }
+
+/* form CSS */
+.modal-content {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.modal-dialog-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
