@@ -151,4 +151,8 @@ let productList = {
     productList[category].push(newProduct);
   }
 
+  export function SearchProductUsingIndex(index, category) {
+    return productList[category][index];
+  }
+
   

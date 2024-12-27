@@ -1,4 +1,4 @@
-import { getProducts, setProduct } from "./data.js";
+import { getProducts, setProduct, SearchProductUsingIndex } from "./data.js";
 
 //Category Icons
 let categoryIcons = document.querySelectorAll(".category-img");
@@ -17,7 +17,7 @@ categoryIcons.forEach((icon) => {
 
       for (let i = 0; i < items.Burgers.length; i++) {
         document.getElementById("items-grid").innerHTML +=
-          `<div class="col mb-3">
+        `<div class="col mb-3">
              <div class="card h-100">
                  <img src="/Images and lcons/turkey-burger.png" class="card-img-top" alt="Item 1">
                  <div class="card-body text-center pt-0">
@@ -25,13 +25,14 @@ categoryIcons.forEach((icon) => {
                      <h5 class="card-title">${items.Burgers[i].name}</h5>
                      <p class="card-text">Rs ${items.Burgers[i].price}.00</p>
                      <div class="d-flex justify-content-center gap-2 mt-3">
-                         <a href="#" class="view-item"><i class="bi bi-eye-fill p-2"></i></a>
-                         <a href="#" class="delete-item"><i class="bi bi-trash p-2 text-danger"></i></a>
-                         <a href="#" class="edit-item"><i class="bi bi-pencil-square p-2"></i></a>
+                         <a href="#" class="view-item"><i class="bi bi-eye-fill p-2" data-index="${i}" data-category="Burgers"></i></a>
+                         <a href="#" class="delete-item"><i class="bi bi-trash p-2 text-danger" data-index="${i}" data-category="Burgers"></i></a>
+                         <a href="#" class="edit-item"><i class="bi bi-pencil-square p-2" data-index="${i}" data-category="Burgers"></i></a>
                      </div>
                  </div>
              </div>
          </div>`;
+
       }
     } else if (icon.id === "category-2") {
       console.log(items.Pasta);
@@ -46,9 +47,9 @@ categoryIcons.forEach((icon) => {
                      <h5 class="card-title">${items.Pasta[i].name}</h5>
                      <p class="card-text">Rs ${items.Pasta[i].price}.00</p>
                      <div class="d-flex justify-content-center gap-2 mt-3">
-                         <a href="#" class="view-item"><i class="bi bi-eye-fill p-2"></i></a>
-                         <a href="#" class="delete-item"><i class="bi bi-trash p-2 text-danger"></i></a>
-                         <a href="#" class="edit-item"><i class="bi bi-pencil-square p-2"></i></a>
+                         <a href="#" class="view-item"><i class="bi bi-eye-fill p-2" data-index="${i}" data-category="Pasta"></i></a>
+                         <a href="#" class="delete-item"><i class="bi bi-trash p-2 text-danger" data-index="${i}" data-category="Pasta"></i></a>
+                         <a href="#" class="edit-item"><i class="bi bi-pencil-square p-2" data-index="${i}" data-category="Pasta"></i></a>
                      </div>
                  </div>
              </div>
@@ -59,21 +60,22 @@ categoryIcons.forEach((icon) => {
 
       for (let i = 0; i < items.Chicken.length; i++) {
         document.getElementById("items-grid").innerHTML +=
-          `<div class="col mb-3">
+        `<div class="col mb-3">
              <div class="card h-100">
-                 <img src="/Images and lcons/Chicken.png" class="card-img-top" alt="Item 1">
+                 <img src="/Images and lcons/chicken.png" class="card-img-top" alt="Item 1">
                  <div class="card-body text-center pt-0">
                      <hr class="my-1">
                      <h5 class="card-title">${items.Chicken[i].name}</h5>
                      <p class="card-text">Rs ${items.Chicken[i].price}.00</p>
                      <div class="d-flex justify-content-center gap-2 mt-3">
-                         <a href="#" class="view-item"><i class="bi bi-eye-fill p-2"></i></a>
-                         <a href="#" class="delete-item"><i class="bi bi-trash p-2 text-danger"></i></a>
-                         <a href="#" class="edit-item"><i class="bi bi-pencil-square p-2"></i></a>
+                         <a href="#" class="view-item"><i class="bi bi-eye-fill p-2" data-index="${i}" data-category="Chicken"></i></a>
+                         <a href="#" class="delete-item"><i class="bi bi-trash p-2 text-danger" data-index="${i}" data-category="Chicken"></i></a>
+                         <a href="#" class="edit-item"><i class="bi bi-pencil-square p-2" data-index="${i}" data-category="Chicken"></i></a>
                      </div>
                  </div>
              </div>
          </div>`;
+          
       }
     } else if (icon.id === "category-4") {
       console.log(items.Fries);
@@ -88,9 +90,9 @@ categoryIcons.forEach((icon) => {
                      <h5 class="card-title">${items.Fries[i].name}</h5>
                      <p class="card-text">Rs ${items.Fries[i].price}.00</p>
                      <div class="d-flex justify-content-center gap-2 mt-3">
-                         <a href="#" class="view-item"><i class="bi bi-eye-fill p-2"></i></a>
-                         <a href="#" class="delete-item"><i class="bi bi-trash p-2 text-danger"></i></a>
-                         <a href="#" class="edit-item"><i class="bi bi-pencil-square p-2"></i></a>
+                         <a href="#" class="view-item"><i class="bi bi-eye-fill p-2" data-index="${i}" data-category="Fries"></i></a>
+                         <a href="#" class="delete-item"><i class="bi bi-trash p-2 text-danger" data-index="${i}" data-category="Fries"></i></a>
+                         <a href="#" class="edit-item"><i class="bi bi-pencil-square p-2" data-index="${i}" data-category="Fries"></i></a>
                      </div>
                  </div>
              </div>
@@ -109,9 +111,9 @@ categoryIcons.forEach((icon) => {
                      <h5 class="card-title">${items.Submarines[i].name}</h5>
                      <p class="card-text">Rs ${items.Submarines[i].price}.00</p>
                      <div class="d-flex justify-content-center gap-2 mt-3">
-                         <a href="#" class="view-item"><i class="bi bi-eye-fill p-2"></i></a>
-                         <a href="#" class="delete-item"><i class="bi bi-trash p-2 text-danger"></i></a>
-                         <a href="#" class="edit-item"><i class="bi bi-pencil-square p-2"></i></a>
+                         <a href="#" class="view-item"><i class="bi bi-eye-fill p-2" data-index="${i}" data-category="Submarines"></i></a>
+                         <a href="#" class="delete-item"><i class="bi bi-trash p-2 text-danger" data-index="${i}" data-category="Submarines"></i></a>
+                         <a href="#" class="edit-item"><i class="bi bi-pencil-square p-2" data-index="${i}" data-category="Submarines"></i></a>
                      </div>
                  </div>
              </div>
@@ -130,9 +132,9 @@ categoryIcons.forEach((icon) => {
                      <h5 class="card-title">${items.Beverages[i].name}</h5>
                      <p class="card-text">Rs ${items.Beverages[i].price}.00</p>
                      <div class="d-flex justify-content-center gap-2 mt-3">
-                         <a href="#" class="view-item"><i class="bi bi-eye-fill p-2"></i></a>
-                         <a href="#" class="delete-item"><i class="bi bi-trash p-2 text-danger"></i></a>
-                         <a href="#" class="edit-item"><i class="bi bi-pencil-square p-2"></i></a>
+                         <a href="#" class="view-item"><i class="bi bi-eye-fill p-2" data-index="${i}" data-category="Beverages"></i></a>
+                         <a href="#" class="delete-item"><i class="bi bi-trash p-2 text-danger" data-index="${i}" data-category="Beverages"></i></a>
+                         <a href="#" class="edit-item"><i class="bi bi-pencil-square p-2" data-index="${i}" data-category="Beverages"></i></a>
                      </div>
                  </div>
              </div>
@@ -150,21 +152,6 @@ document.addEventListener("DOMContentLoaded", function () {
     burgersIcon.click();
   }
 });
-
-// Event delegation for the eye icon click
-document.getElementById("items-grid").addEventListener("click", function (event) {
-  if (event.target && event.target.matches("a.view-item i")) {
-    console.log("Eye icon clicked");
-  }
-  if (event.target && event.target.matches("a.delete-item i")) {
-    console.log("Trash icon clicked");
-  }
-  if (event.target && event.target.matches("a.edit-item i")) {
-    console.log("Pencil icon clicked");
-  }
-});
-
-
 
 
 // Open form
@@ -223,4 +210,63 @@ productForm.addEventListener("submit", (e) => {
   console.log("Form submitted");
 });
 
+//search function
+
+const searchInput = document.getElementById("SearchItems");
+searchInput.addEventListener("input", () => {
+  const searchTerm = searchInput.value.toLowerCase();
+  searchProducts(searchTerm);
+});
+
+function searchProducts(searchTerm) {
+  const productCards = document.querySelectorAll(".card");
+  productCards.forEach((card) => {
+    const productName = card.querySelector(".card-title").textContent.toLowerCase();
+    if (productName.includes(searchTerm)) {
+      card.style.display = "block";
+    } else {
+      card.style.display = "none";
+    }
+  });
+}
+
+// card click events (view, delete, edit)
+document.getElementById("items-grid").addEventListener("click", function (event) {
+
+  // View item
+  if (event.target && event.target.matches("a.view-item i")) {
+    const card = event.target.closest('.card');
+    const itemIndex = event.target.getAttribute('data-index');
+    const itemCategory = event.target.getAttribute('data-category');
+    const itemobject = SearchProductUsingIndex(itemIndex, itemCategory);
+    console.log("Item Index:", itemIndex);
+    console.log("Item Category:", itemCategory);
+    console.log("Card Index:", itemobject);
+    
+  }
   
+
+  // Delete item
+  if (event.target && event.target.matches("a.delete-item i")) {
+    const card = event.target.closest('.card');
+    const itemIndex = event.target.getAttribute('data-index');
+    const itemCategory = event.target.getAttribute('data-category');
+    const itemobject = SearchProductUsingIndex(itemIndex, itemCategory);
+    console.log("Item Index:", itemIndex);
+    console.log("Item Category:", itemCategory);
+    console.log("Card Index:", itemobject);
+  }
+
+
+
+  // Edit item
+  if (event.target && event.target.matches("a.edit-item i")) {
+    const card = event.target.closest('.card');
+    const itemIndex = event.target.getAttribute('data-index');
+    const itemCategory = event.target.getAttribute('data-category');
+    const itemobject = SearchProductUsingIndex(itemIndex, itemCategory);
+    console.log("Item Index:", itemIndex);
+    console.log("Item Category:", itemCategory);
+    console.log("Card Index:", itemobject);
+  }
+});
