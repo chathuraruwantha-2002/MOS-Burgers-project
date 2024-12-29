@@ -242,6 +242,27 @@ document.getElementById("items-grid").addEventListener("click", function (event)
     console.log("Item Index:", itemIndex);
     console.log("Item Category:", itemCategory);
     console.log("Card Index:", itemobject);
+
+    if (itemobject) {
+      
+     // document.getElementById("viewItemImage").src = itemObject.image || "/Images and lcons/default.png";
+      document.getElementById("viewItemCode").textContent = itemobject.itemCode || "N/A";
+      document.getElementById("viewItemName").textContent = itemobject.name || "N/A";
+      document.getElementById("viewItemPrice").textContent = `Rs. ${itemobject.price || "0.00"}`;
+      document.getElementById("viewItemDiscount").textContent = `Rs. ${itemobject.discount || "0.00"}`;
+      //document.getElementById("viewItemExpire").textContent = itemObject.expireDate || "N/A";
+      //document.getElementById("viewItemQuantity").textContent = itemObject.quantity || "N/A";
+      //document.getElementById("viewItemCategory").textContent = itemObject.category || "N/A";
+      //document.getElementById("viewItemDescription").textContent = itemObject.description || "N/A";
+      //document.getElementById("viewItemAdditional").textContent = itemObject.additionalInfo || "N/A";
+
+      // Show the view product modal
+      const viewProductModal = new bootstrap.Modal(document.getElementById("ViewProductModal"));
+      viewProductModal.show();
+    } else {
+      console.error("Item not found!");
+    }
+    
     
   }
   
@@ -270,3 +291,5 @@ document.getElementById("items-grid").addEventListener("click", function (event)
     console.log("Card Index:", itemobject);
   }
 });
+
+

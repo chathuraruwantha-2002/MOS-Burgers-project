@@ -84,8 +84,9 @@
 
                 <!-- add new item -->
                 <div class="col-12 d-flex justify-content-end">
-                    <button class="btn btn-add-new-item w-100 mb-0 border col-4 " id="addNewProductBtn"
-                        data-bs-toggle="modal" data-bs-target="#addProductModal">Add New Item</button>
+                    <button class="btn btn-add-new-item w-100 mb-0 border col-4 " id="addNewProductBtn" data-bs-toggle="modal" data-bs-target="#addProductModal">
+                        Add New Item
+                    </button>
                 </div>
 
 
@@ -151,10 +152,58 @@
                 </div>
 
 
+                <!-- View Product Modal -->
+                <div class="modal fade" id="ViewProductModal" tabindex="-1" aria-labelledby="viewProductModalLabel"
+                    aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered">
+                        <div class="modal-content shadow-lg">
+                        
+                            <div class="m-4 text-center">
+                                <img id="viewItemImage" src="/Images and lcons/pasta.png" alt="Item Image" class="img-fluid" style="max-width: 100px;">
+                                <hr>
+                            </div>
+
+                            <div class="modal-body">
+                                <div class="mb-3">
+                                    <strong>Item Code :</strong> <span id="viewItemCode">N/A</span>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Item Name :</strong> <span id="viewItemName">N/A</span>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Price :</strong> <span id="viewItemPrice">Rs. 0.00</span>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Discount :</strong> <span id="viewItemDiscount">Rs. 0.00</span>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Expire Date :</strong> <span id="viewItemExpire">N/A</span>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Quantity :</strong> <span id="viewItemQuantity">N/A</span>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Category :</strong> <span id="viewItemCategory">N/A</span>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Discription :</strong> <span id="viewItemDiscription">N/A</span>
+                                </div>
+                                <div class="mb-3">
+                                    <strong>Additional info :</strong> <span id="viewItemAdditional">N/A</span>
+                                </div>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+
                 <!-- Search Section -->
                 <div class="row align-items-center col-12">
                     <div class="col-8">
-                        <input type="text" class="form-control" id ="SearchItems" placeholder="Search Items...">
+                        <input type="text" class="form-control" id="SearchItems" placeholder="Search Items...">
                     </div>
                 </div>
 
