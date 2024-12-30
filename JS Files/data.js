@@ -154,5 +154,8 @@ let productList = {
   export function SearchProductUsingIndex(index, category) {
     return productList[category][index];
   }
+  export function deleteProduct(index, category) {
+     (productList[category].splice(index, 1));
+  }
 
   

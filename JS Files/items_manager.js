@@ -1,4 +1,4 @@
-import { getProducts, setProduct, SearchProductUsingIndex } from "./data.js";
+import { getProducts, setProduct, SearchProductUsingIndex, deleteProduct } from "./data.js";
 
 //Category Icons
 let categoryIcons = document.querySelectorAll(".category-img");
@@ -276,6 +276,13 @@ document.getElementById("items-grid").addEventListener("click", function (event)
     console.log("Item Index:", itemIndex);
     console.log("Item Category:", itemCategory);
     console.log("Card Index:", itemobject);
+
+    if (itemobject) {
+      deleteProduct(itemIndex, itemCategory);
+      card.remove();
+    } else {
+      console.error("Item not found!");
+    }
   }
 
 
