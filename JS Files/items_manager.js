@@ -1,4 +1,4 @@
-import { getProducts, setProduct, SearchProductUsingIndex, deleteProduct } from "./data.js";
+import { getProducts, setProduct, SearchProductUsingIndex, deleteProduct, updateProduct } from "./data.js";
 
 //Category Icons
 let categoryIcons = document.querySelectorAll(".category-img");
@@ -17,7 +17,7 @@ categoryIcons.forEach((icon) => {
 
       for (let i = 0; i < items.Burgers.length; i++) {
         document.getElementById("items-grid").innerHTML +=
-        `<div class="col mb-3">
+          `<div class="col mb-3">
              <div class="card h-100">
                  <img src="/Images and lcons/turkey-burger.png" class="card-img-top" alt="Item 1">
                  <div class="card-body text-center pt-0">
@@ -60,7 +60,7 @@ categoryIcons.forEach((icon) => {
 
       for (let i = 0; i < items.Chicken.length; i++) {
         document.getElementById("items-grid").innerHTML +=
-        `<div class="col mb-3">
+          `<div class="col mb-3">
              <div class="card h-100">
                  <img src="/Images and lcons/chicken.png" class="card-img-top" alt="Item 1">
                  <div class="card-body text-center pt-0">
@@ -75,7 +75,7 @@ categoryIcons.forEach((icon) => {
                  </div>
              </div>
          </div>`;
-          
+
       }
     } else if (icon.id === "category-4") {
       console.log(items.Fries);
@@ -153,16 +153,28 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
+// Add New Product Modal
+const addProductModal = new bootstrap.Modal(document.getElementById("addProductModal"));
+
 
 // Open form
 document.getElementById("addNewProductBtn").addEventListener("click", () => {
-  const addProductModal = new bootstrap.Modal(document.getElementById("addProductModal"));
   addProductModal.show();
 });
 
+//form submit function when click the add product button
+document.getElementById("addProductBtn").addEventListener("click", function (event) {
+  event.preventDefault();
+  addNewProduct();
+  addProductModal.hide();
+  document.getElementById("productFormAdd").reset();
+});
 
-
-
+//cancel button function
+document.getElementById("cancelBtn").addEventListener("click", () => {
+  addProductModal.hide();
+  document.getElementById("productForm").reset();
+})
 
 // Add New Product function
 function addNewProduct() {
@@ -175,40 +187,32 @@ function addNewProduct() {
 
   if (!productCodeInput || !productNameInput || !productPriceInput || !categorySelect || !discountInput || !productImgInput) {
     console.error("One or more form elements are missing!");
+    alert("One or more form elements are missing!");
     return;
+  } else {
+
+    const productCode = productCodeInput.value;
+    const productName = productNameInput.value;
+    const productPrice = parseFloat(productPriceInput.value);
+    const productCategory = categorySelect.options[categorySelect.selectedIndex]?.text || '';
+    const discount = parseFloat(discountInput.value);
+    const productImg = productImgInput.value;
+
+    const newProduct = {
+      itemCode: productCode,
+      name: productName,
+      price: productPrice,
+      discount: discount,
+      img: productImg,
+    };
+
+    setProduct(newProduct, productCategory);
+
   }
-
-  const productCode = productCodeInput.value;
-  const productName = productNameInput.value;
-  const productPrice = parseFloat(productPriceInput.value);
-  const productCategory = categorySelect.options[categorySelect.selectedIndex]?.text || '';
-  const discount = parseFloat(discountInput.value);
-  const productImg = productImgInput.value;
-
-  const newProduct = {
-    itemCode: productCode,
-    name: productName,
-    price: productPrice,
-    discount: discount,
-    img: productImg,
-  };
-
-  setProduct(newProduct, productCategory);
-
-  // Close the modal
-  const addProductModal = new bootstrap.Modal(document.getElementById("addProductModal"));
-  addProductModal.hide();
 }
 
 
-//form submit function
-const productForm = document.getElementById("productForm");
 
-productForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  addNewProduct();
-  console.log("Form submitted");
-});
 
 //search function
 
@@ -230,8 +234,14 @@ function searchProducts(searchTerm) {
   });
 }
 
-// card click events (view, delete, edit)
+
+
+
+// card click events (view, delete, edit) .......
+
 document.getElementById("items-grid").addEventListener("click", function (event) {
+
+
 
   // View item
   if (event.target && event.target.matches("a.view-item i")) {
@@ -244,12 +254,12 @@ document.getElementById("items-grid").addEventListener("click", function (event)
     console.log("Card Index:", itemobject);
 
     if (itemobject) {
-      
-     // document.getElementById("viewItemImage").src = itemObject.image || "/Images and lcons/default.png";
-      document.getElementById("viewItemCode").textContent = itemobject.itemCode || "N/A";
-      document.getElementById("viewItemName").textContent = itemobject.name || "N/A";
-      document.getElementById("viewItemPrice").textContent = `Rs. ${itemobject.price || "0.00"}`;
-      document.getElementById("viewItemDiscount").textContent = `Rs. ${itemobject.discount || "0.00"}`;
+
+      //document.getElementById("viewItemImage").src = itemObject.image || "/Images and lcons/default.png";
+      document.getElementById("viewItemCode").textContent = itemobject.itemCode;
+      document.getElementById("viewItemName").textContent = itemobject.name;
+      document.getElementById("viewItemPrice").textContent = `${itemobject.price.toFixed(2)}`;
+      document.getElementById("viewItemDiscount").textContent = ` ${itemobject.discount.toFixed(2)}`;
       //document.getElementById("viewItemExpire").textContent = itemObject.expireDate || "N/A";
       //document.getElementById("viewItemQuantity").textContent = itemObject.quantity || "N/A";
       //document.getElementById("viewItemCategory").textContent = itemObject.category || "N/A";
@@ -259,13 +269,17 @@ document.getElementById("items-grid").addEventListener("click", function (event)
       // Show the view product modal
       const viewProductModal = new bootstrap.Modal(document.getElementById("ViewProductModal"));
       viewProductModal.show();
+
     } else {
       console.error("Item not found!");
     }
-    
-    
+
+
   }
-  
+
+
+
+
 
   // Delete item
   if (event.target && event.target.matches("a.delete-item i")) {
@@ -287,7 +301,10 @@ document.getElementById("items-grid").addEventListener("click", function (event)
 
 
 
-  // Edit item
+
+
+
+  // Update item
   if (event.target && event.target.matches("a.edit-item i")) {
     const card = event.target.closest('.card');
     const itemIndex = event.target.getAttribute('data-index');
@@ -296,7 +313,82 @@ document.getElementById("items-grid").addEventListener("click", function (event)
     console.log("Item Index:", itemIndex);
     console.log("Item Category:", itemCategory);
     console.log("Card Index:", itemobject);
+
+    if (itemobject) {
+      console.log(itemobject.itemCode);
+      console.log(itemobject.name);
+      console.log(itemobject.price);
+      console.log(itemobject.discount);
+
+
+      document.getElementById("UpdateItemCode").value = itemobject.itemCode.trim();
+      document.getElementById("UpdateitemName").value = itemobject.name.trim();
+      document.getElementById("UpdateitemPrice").value = parseFloat(itemobject.price).toFixed(2);
+      document.getElementById("UpdateitemDiscountPrice").value = parseFloat(itemobject.discount).toFixed(2);
+      //document.getElementById("editItemExpire").value = itemObject.expireDate || "";
+      //document.getElementById("editItemQuantity").value = itemObject.quantity || "";
+      //document.getElementById("editItemCategory").value = itemObject.category || "";
+      //document.getElementById("editItemDescription").value = itemObject.description || "";
+      //document.getElementById("editItemAdditional").value = itemObject.additionalInfo || "";
+
+
+      // Update product button
+      document.getElementById("updateProductBtn").addEventListener("click", function (event) {
+        event.preventDefault();
+        UpdateProductinfo();
+      })
+
+      //cancel button
+      document.getElementById("cancelUpdateBtn").addEventListener("click", () => {
+        UpdateProductModal.hide();
+        document.getElementById("productFormUpdate").reset();
+      })
+
+      // Show the update product modal
+      const UpdateProductModal = new bootstrap.Modal(document.getElementById("updateProductModal"));
+      UpdateProductModal.show();
+
+      // Update product function
+      function UpdateProductinfo() {
+        const itemCode = document.getElementById("UpdateItemCode").value.trim();
+        const itemname = document.getElementById("UpdateitemName").value.trim();
+        const itemprice = parseFloat(document.getElementById("UpdateitemPrice").value);
+        const itemdiscount = parseFloat(document.getElementById("UpdateitemDiscountPrice").value);
+        //const itemexpire = document.getElementById("editItemExpire").value;
+        //const itemquantity = document.getElementById("editItemQuantity").value;
+        //const itemcategory = document.getElementById("editItemCategory").value;
+        //const itemdescription = document.getElementById("editItemDescription").value;
+        //const itemadditional = document.getElementById("editItemAdditional").value;
+
+        if (itemCode !== itemobject.itemCode || itemname !== itemobject.name || itemprice !== itemobject.price || itemdiscount !== itemobject.discount) {
+
+          const itemobjectforupdate = {
+            itemCode: itemCode,
+            name: itemname,
+            price: itemprice,
+            discount: itemdiscount
+          }
+          updateProduct(itemIndex, itemCategory, itemobjectforupdate);
+          UpdateProductModal.hide();
+          document.getElementById("productFormUpdate").reset();
+        } else {
+          console.log("No changes made..!");
+        }
+      }
+
+
+
+    } else {
+      console.error("Item not found..!");
+    }
   }
+
+
+
+
 });
+
+
+
 
 

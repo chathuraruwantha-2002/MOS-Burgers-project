@@ -4,7 +4,7 @@ let productList = {
         itemCode: "B1001",
         name: "Classic Burger",
         price: 1500.0,
-        discount: 0,
+        discount: 12,
         img: "",
       },
       {
@@ -149,6 +149,8 @@ let productList = {
 
   export function setProduct(newProduct, category) {
     productList[category].push(newProduct);
+    console.log("Product Added Successfully...!");
+    alert("Product Added Successfully...!");
   }
 
   export function SearchProductUsingIndex(index, category) {
@@ -156,6 +158,12 @@ let productList = {
   }
   export function deleteProduct(index, category) {
      (productList[category].splice(index, 1));
+  }
+  
+  export function updateProduct(index, category, updatedProduct) {
+    productList[category][index] = updatedProduct;
+    console.log("Product Updated Successfully...!");
+    alert("Product Updated Successfully...!");
   }
 
   
