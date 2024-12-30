@@ -143,6 +143,133 @@ let productList = {
     ],
   };
 
+  //Customers
+
+  let customersArray = [
+    {
+      customerID: 1,
+      img: "",
+      firstName: "Kamal",
+      lastName: "Gunasekara",
+      occupation: "Electrical Engineer",
+      gender: "Male",
+      location: "Matara",
+      email: "kaman@gmail.com",
+      phoneNumber: "0742231234",
+      additionalInfo: "",
+    },
+    {
+      customerID: 2,
+      img: "",
+      firstName: "Manu",
+      lastName: "Wijesinghe",
+      occupation: "Doctor",
+      gender: "Male",
+      location: "Colombo",
+      email: "manu@gmail.com",
+      phoneNumber: "0712234453",
+      additionalInfo: "",
+    },
+    {
+      customerID: 3,
+      img: "",
+      firstName: "Kasun",
+      lastName: "Perera",
+      occupation: "Densist",
+      gender: "male",
+      location: "Kandy",
+      email: "kasun@gmail.com",
+      phoneNumber: "0765543234",
+      additionalInfo: "",
+    },
+    {
+      customerID: 4,
+      img: "",
+      firstName: "Sarath",
+      lastName: "Bandara",
+      occupation: "Accountant",
+      gender: "Male",
+      location: "Panadura",
+      email: "sarathf@gmail.com",
+      phoneNumber: "0756227656",
+      additionalInfo: "",
+    },
+    {
+      customerID: 5,
+      img: "",
+      firstName: "Nadeesha",
+      lastName: "Hemamaali",
+      occupation: "Teacher",
+      gender: "Female",
+      location: "Anuvarapura",
+      email: "nadeesha@gmail.com",
+      phoneNumber: "0723075760",
+      additionalInfo: "",
+    },
+    {
+      customerID: 6,
+      img: "",
+      firstName: "Madara",
+      lastName: "Wanigarathna",
+      occupation: "Lawyer",
+      gender: "Male",
+      location: "Jaffna",
+      email: "madara.@gmail.com",
+      phoneNumber: "07623234453",
+      additionalInfo: "",
+    },
+    {
+      customerID: 7,
+      img: "",
+      firstName: "Kamani",
+      lastName: "Wijesinghe",
+      occupation: "Cardiologist",
+      gender: "Female",
+      location: "Matara",
+      email: "kamani.j@gmail.com",
+      phoneNumber: "0765009820",
+      additionalInfo: "",
+    },
+    {
+      customerID: 8,
+      img: "",
+      firstName: "Chamath",
+      lastName: "Perera",
+      occupation: "Architect",
+      gender: "male",
+      location: "Awissawella",
+      email: "chamatha@gmail.com",
+      phoneNumber: "0713456739",
+      additionalInfo: "",
+    },
+    {
+      customerID: 9,
+      img: "",
+      firstName: "Sandaruwan",
+      lastName: "Dissanayake",
+      occupation: "Quentm Scientist",
+      gender: "Male",
+      location: "Kalutara",
+      email: "sandaruwan.d@gmail.com",
+      phoneNumber: "0743325546",
+      additionalInfo: "",
+    },
+    {
+      customerID: 10,
+      img: "",
+      firstName: "Danushka",
+      lastName: "Wanigasuriya",
+      occupation: "Pharmacist",
+      gender: "Male",
+      location: "Galle",
+      email: "danushka@gmail.com",
+      phoneNumber: "0773324456",
+      additionalInfo: "",
+    },
+  ];
+
+  //items
+
   export function getProducts() {
     return productList; 
   }
@@ -166,4 +293,10 @@ let productList = {
     alert("Product Updated Successfully...!");
   }
 
+
+
+  //Customers
+  export function getCustomers() {
+    return customersArray;
+  }
   
