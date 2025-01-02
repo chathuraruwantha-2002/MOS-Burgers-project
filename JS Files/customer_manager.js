@@ -1,4 +1,4 @@
-import { getCustomers } from "./data.js";
+import { getCustomers, SearchCustomerUsingIndex, deleteCustomer, updateCustomer, addCustomer } from "./data.js";
 
 
 //catch customer manager cards grid
@@ -18,12 +18,73 @@ for (let i = 0; i < Customers.length; i++) {
                     <h5 class="card-title">${Customers[i].firstName} ${Customers[i].lastName}</h5>
                     <p class="card-text">${Customers[i].phoneNumber}</p>
                     <div class="d-flex justify-content-center gap-2 mt-3">
-                        <a href=""><i class="bi bi-eye-fill p-3"></i></a>
-                        <a href="#"><i class="bi bi-trash p-3 text-danger"></i></a>
-                        <a href="#"><i class="bi bi-pencil-square p-3"></i></a>
+                        <a href="#" class="view-customer"><i class="bi bi-eye-fill p-3" data-index="${i}"></i></a>
+                        <a href="#" class="delete-customer"><i class="bi bi-trash p-3 text-danger" data-index="${i}"></i></a>
+                        <a href="#" class="edit-customer"><i class="bi bi-pencil-square p-3" data-index="${i}"></i></a>
                     </div>
                 </div>
             </div>
         </div>`;
 
   }
+
+// card click events (view, delete, edit) .......
+
+document.getElementById("customers-grid").addEventListener("click", function (event) {
+
+
+
+  // View Customer
+  if (event.target && event.target.matches("a.view-customer i")) {
+    const card = event.target.closest('.card');
+    const customerIndex = event.target.getAttribute('data-index');
+    const customerobject = SearchCustomerUsingIndex(customerIndex);
+    console.log("Customer Index:", customerIndex);
+    console.log("Card Index:", customerobject);
+
+    
+    if (customerobject) {
+
+
+      // Show the view product modal
+      const viewProductModal = new bootstrap.Modal(document.getElementById("ViewCustomerModal"));
+      viewProductModal.show();
+
+    } else {
+      console.error("Customer not found!");
+    }
+
+  }
+  
+
+  // Delete Customer
+  if (event.target && event.target.matches("a.delete-customer i")) {
+    const card = event.target.closest('.card');
+    const customerIndex = event.target.getAttribute('data-index');
+    const customerobject = SearchCustomerUsingIndex(customerIndex);
+    console.log("Customer Index:", customerIndex);
+    console.log("Card Index:", customerobject);
+    
+    if (customerobject) {
+      deleteCustomer(customerIndex);
+      card.remove();
+    } else {
+      console.error("Customer not found!");
+    }
+
+  }
+
+
+  // Update Customer
+  if (event.target && event.target.matches("a.edit-customer i")) {
+    const card = event.target.closest('.card');
+    const customerIndex = event.target.getAttribute('data-index');
+    const customerobject = SearchCustomerUsingIndex(customerIndex);
+    console.log("Customer Index:", customerIndex);
+    console.log("Card Index:", customerobject);
+
+
+  }
+
+});
+

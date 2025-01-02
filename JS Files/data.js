@@ -299,4 +299,21 @@ let productList = {
   export function getCustomers() {
     return customersArray;
   }
+  export function SearchCustomerUsingIndex(customerIndex) {
+    return customersArray[customerIndex];
+  }
+  export function deleteCustomer(index) {
+    (customersArray.splice(index, 1));
+ }
+ export function updateCustomer(index, updatedCustomer) {
+   customersArray[index] = updatedCustomer;
+   console.log("Customer Updated Successfully...!");
+   alert("Customer Updated Successfully...!");
+ }
+ export function addCustomer(newCustomer) {
+   customersArray.push(newCustomer);
+   console.log("Customer Added Successfully...!");
+   alert("Customer Added Successfully...!");
+ }
+ 
   
