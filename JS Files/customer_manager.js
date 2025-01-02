@@ -28,6 +28,22 @@ for (let i = 0; i < Customers.length; i++) {
 
 }
 
+
+
+
+
+// Add New Customer Modal
+const addCustomerModal = new bootstrap.Modal(document.getElementById("AddCustomerModal"));
+
+// Open form
+document.getElementById("addNewCustomerBtn").addEventListener("click", () => {
+  addCustomerModal.show();
+});
+
+
+
+
+
 // card click events (view, delete, edit) .......
 
 document.getElementById("customers-grid").addEventListener("click", function (event) {
