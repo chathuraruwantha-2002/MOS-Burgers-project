@@ -151,34 +151,57 @@
                     <form id="productFormUpdate">
                         <!-- Form Fields -->
                         <div class="form-outline mb-3">
-                            <label for="itemCode" class="form-label">Item Code</label>
-                            <input type="text" class="form-control" id="UpdateItemCode" placeholder="Enter item code">
+                            <label for="UpdateCustomerId" class="form-label">Customer ID</label>
+                            <input type="text" class="form-control" id="UpdateCustomerId" placeholder="Enter Customer ID">
                         </div>
                         <div class="form-outline mb-3">
-                            <label for="itemName" class="form-label">Item Name</label>
-                            <input type="text" class="form-control" id="UpdateitemName" placeholder="Enter item name">
-                        </div>
-
-                        <div class="form-outline mb-3">
-                            <label for="itemPrice" class="form-label">Price (Rs)</label>
-                            <input type="number" class="form-control" id="UpdateitemPrice" placeholder="Enter price">
+                            <label for="UpdateCustomerFirstName" class="form-label">First Name</label>
+                            <input type="text" class="form-control" id="UpdateCustomerFirstName" placeholder="Enter First Name">
                         </div>
                         <div class="form-outline mb-3">
-                            <label for="itemDiscountPrice" class="form-label">Discount</label>
-                            <input type="number" class="form-control" id="UpdateitemDiscountPrice"
-                                placeholder="Enter price">
+                            <label for="UpdateCustomerLastName" class="form-label">Last Name</label>
+                            <input type="text" class="form-control" id="UpdateCustomerLastName" placeholder="Enter Last Name">
                         </div>
                         <div class="form-outline mb-3">
-                            <label for="itemDescription" class="form-label m-2">Update Image</label>
-                            <input type="file" class="text-muted" id="UpdateitemImage">
+                            <label for="UpdateCustomerOccupation" class="form-label">Occupation</label>
+                            <input type="text" class="form-control" id="UpdateCustomerOccupation" placeholder="Enter Occupation">
                         </div>
-
+                        <div class="form-outline mb-3">
+                            <label for="UpdateCustomerGender" class="form-label">Gender</label>
+                            <select class="form-control" id="UpdateCustomerGender">
+                                <option>Select</option>
+                                <option>Male</option>
+                                <option>Female</option>
+                            </select>
+                        </div>
+                        <div class="form-outline mb-3">
+                            <label for="UpdateCustomerLocation" class="form-label">Location</label>
+                            <input type="text" class="form-control" id="UpdateCustomerLocation" placeholder="Enter Location">
+                        </div>
+                        <div class="form-outline mb-3">
+                            <label for="UpdateCustomerEmail" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="UpdateCustomerEmail" placeholder="Enter Email">
+                        </div>
+                        <div class="form-outline mb-3">
+                            <label for="UpdateCustomerPhno" class="form-label">Phone Number</label>
+                            <input type="text" class="form-control" id="UpdateCustomerPhno" placeholder="Enter Phone Number">
+                        </div>
+                        
+                        <div class="form-outline mb-3">
+                            <label for="UpdateCustomerInfo" class="form-label">Additional Info</label>
+                            <input type="text" class="form-control" id="UpdateCustomerInfo" placeholder="Enter Additional Info">
+                        </div>
+                        
+                        <div class="form-outline mb-3">
+                            <label for="UpdateCustomerImage" class="form-label m-2">Update Image</label>
+                            <input type="file" class="text-muted" id="UpdateCustomerImage">
+                        </div>
+                        
 
                         <div class="d-flex justify-content-end">
                             <button type="button" class="btn btn-secondary me-2 m-1" data-bs-dismiss="modal"
                                 id="cancelUpdateBtn">Cancel</button>
-                            <button type="submit" class="btn btn-success m-1" id="updateProductBtn">Update
-                                Product</button>
+                            <button type="submit" class="btn btn-success m-1" id="updateCustomerBtn">Update Customer</button>
                         </div>
                     </form>
                 </div>
