@@ -9,8 +9,8 @@ let Customers = getCustomers();
 
 // load customer cards to the grid  
 for (let i = 0; i < Customers.length; i++) {
-    document.getElementById("customers-grid").innerHTML +=
-      `<div class="col mb-3">
+  document.getElementById("customers-grid").innerHTML +=
+    `<div class="col mb-3">
             <div class="card h-100">
                 <img src="/Images and lcons/man.png" class="card-img-top" alt="Item 1">
                 <div class="card-body text-center pt-0">
@@ -26,7 +26,7 @@ for (let i = 0; i < Customers.length; i++) {
             </div>
         </div>`;
 
-  }
+}
 
 // card click events (view, delete, edit) .......
 
@@ -42,20 +42,20 @@ document.getElementById("customers-grid").addEventListener("click", function (ev
     console.log("Customer Index:", customerIndex);
     console.log("Card Index:", customerobject);
 
-    
+
     if (customerobject) {
 
 
       // Show the view product modal
-      const viewProductModal = new bootstrap.Modal(document.getElementById("ViewCustomerModal"));
-      viewProductModal.show();
+      const viewCustomerModal = new bootstrap.Modal(document.getElementById("ViewCustomerModal"));
+      viewCustomerModal.show();
 
     } else {
       console.error("Customer not found!");
     }
 
   }
-  
+
 
   // Delete Customer
   if (event.target && event.target.matches("a.delete-customer i")) {
@@ -64,7 +64,7 @@ document.getElementById("customers-grid").addEventListener("click", function (ev
     const customerobject = SearchCustomerUsingIndex(customerIndex);
     console.log("Customer Index:", customerIndex);
     console.log("Card Index:", customerobject);
-    
+
     if (customerobject) {
       deleteCustomer(customerIndex);
       card.remove();
@@ -83,6 +83,14 @@ document.getElementById("customers-grid").addEventListener("click", function (ev
     console.log("Customer Index:", customerIndex);
     console.log("Card Index:", customerobject);
 
+    if (customerobject) {
+
+      // Show the view product modal
+      const viewCustomerModal = new bootstrap.Modal(document.getElementById("updateCustomerModal"));
+      viewCustomerModal.show();
+
+
+    }
 
   }
 
