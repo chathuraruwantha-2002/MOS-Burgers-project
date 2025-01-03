@@ -111,14 +111,73 @@ document.getElementById("customers-grid").addEventListener("click", function (ev
 
     if (customerobject) {
 
-      // Show the view product modal
-      const viewCustomerModal = new bootstrap.Modal(document.getElementById("updateCustomerModal"));
-      viewCustomerModal.show();
+      //assighments
+      document.getElementById("UpdateCustomerId").value = customerobject.customerID;
+      document.getElementById("UpdateCustomerFirstName").value = customerobject.firstName;
+      document.getElementById("UpdateCustomerLastName").value = customerobject.lastName;
+      document.getElementById("UpdateCustomerGender").value = customerobject.gender;
+      document.getElementById("UpdateCustomerOccupation").value = customerobject.occupation;
+      document.getElementById("UpdateCustomerLocation").value = customerobject.location;
+      document.getElementById("UpdateCustomerPhno").value = customerobject.phoneNumber;
+      document.getElementById("UpdateCustomerEmail").value = customerobject.email;
+      document.getElementById("UpdateCustomerAdi").value = customerobject.additionalInfo;
 
+      // Update customer button
+      document.getElementById("updateCustomerBtn").addEventListener("click", function (event) {
+        event.preventDefault();
+        console.log("Update Customer Button Clicked");
+        UpdateCustomerinfo();
+      })
+
+      //cancel button
+      document.getElementById("cancelUpdateBtn").addEventListener("click", () => {
+        UpdateCustomerModal.hide();
+        document.getElementById("customerFormUpdate").reset();
+      })
+
+      // Show the view product modal
+      const UpdateCustomerModal = new bootstrap.Modal(document.getElementById("updateCustomerModal"));
+      UpdateCustomerModal.show();
+
+     function UpdateCustomerinfo(){
+      // Get the form values
+      const customerID = document.getElementById("UpdateCustomerId").value;
+      const firstName = document.getElementById("UpdateCustomerFirstName").value;
+      const lastName = document.getElementById("UpdateCustomerLastName").value;
+      const gender = document.getElementById("UpdateCustomerGender").value;
+      const occupation = document.getElementById("UpdateCustomerOccupation").value;
+      const location = document.getElementById("UpdateCustomerLocation").value;
+      const phoneNumber = document.getElementById("UpdateCustomerPhno").value;
+      const email = document.getElementById("UpdateCustomerEmail").value;
+      const additionalInfo = document.getElementById("UpdateCustomerAdi").value;
+
+      if(customerID !== customerobject.customerID || firstName !== customerobject.firstName || lastName !== customerobject.lastName || gender !== customerobject.gender || occupation !== customerobject.occupation || location !== customerobject.location || phoneNumber !== customerobject.phoneNumber || email !== customerobject.email || additionalInfo !== customerobject.additionalInfo){
+
+        // create customer object
+        const customerobjectforupdate = {
+          customerID: customerID,
+          firstName: firstName,
+          lastName: lastName,
+          gender: gender,
+          occupation: occupation,
+          location: location,
+          phoneNumber: phoneNumber,
+          email: email,
+          additionalInfo: additionalInfo
+        };
+        // update customer object
+        updateCustomer(customerIndex, customerobjectforupdate);
+        UpdateCustomerModal.hide();
+        document.getElementById("customerFormUpdate").reset();
+        }
+        else{
+          console.log("No changes made..!");
+        }
+      
+      }
+      
 
     }
-
   }
-
 });
 
