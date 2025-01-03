@@ -44,6 +44,47 @@ document.getElementById("addNewCustomerBtn").addEventListener("click", () => {
 
 
 
+
+//form submit function when click the add product button////
+document.getElementById("AddCustomerBtn").addEventListener("click", function (event) {
+  event.preventDefault();
+  addNewCustomer();
+  addCustomerModal.hide();
+  document.getElementById("AddCustomerForm").reset();
+});
+
+//cancel button function
+document.getElementById("cancelAddBtn").addEventListener("click", () => {
+  addCustomerModal.hide();
+  document.getElementById("AddCustomerForm").reset();
+});
+
+
+//function of add customer
+function addNewCustomer() {
+  const newCustomer = {
+    //customerID: document.getElementById("AddcustomerID").value,
+    img: document.getElementById("AddCustomerImage").value,
+    firstName: document.getElementById("AddCustomerFirstName").value,
+    lastName: document.getElementById("AddCustomerLastName").value,
+    occupation: document.getElementById("AddCustomerOccupation").value,
+    gender: document.getElementById("AddCustomerGender").value,
+    location: document.getElementById("AddCustomerLocation").value,
+    email: document.getElementById("AddCustomerEmail").value,
+    phoneNumber: document.getElementById("AddCustomerPhno").value,
+    //additionalInfo: document.getElementById("AddCustomerAdi").value
+  };
+  addCustomer(newCustomer);
+  console.log(newCustomer);
+  console.log(Customers);
+}
+
+
+
+
+
+
+
 // card click events (view, delete, edit) .......
 
 document.getElementById("customers-grid").addEventListener("click", function (event) {
@@ -70,7 +111,7 @@ document.getElementById("customers-grid").addEventListener("click", function (ev
       document.getElementById("viewCustomerPhno").textContent = customerobject.phoneNumber;
       document.getElementById("viewCustomerEmail").textContent = customerobject.email;
       document.getElementById("viewCustomerAdi").textContent = customerobject.additionalinfo;
-      
+
 
       // Show the view product modal
       const viewCustomerModal = new bootstrap.Modal(document.getElementById("ViewCustomerModal"));
@@ -139,43 +180,47 @@ document.getElementById("customers-grid").addEventListener("click", function (ev
       const UpdateCustomerModal = new bootstrap.Modal(document.getElementById("updateCustomerModal"));
       UpdateCustomerModal.show();
 
-     function UpdateCustomerinfo(){
-      // Get the form values
-      const customerID = document.getElementById("UpdateCustomerId").value;
-      const firstName = document.getElementById("UpdateCustomerFirstName").value;
-      const lastName = document.getElementById("UpdateCustomerLastName").value;
-      const gender = document.getElementById("UpdateCustomerGender").value;
-      const occupation = document.getElementById("UpdateCustomerOccupation").value;
-      const location = document.getElementById("UpdateCustomerLocation").value;
-      const phoneNumber = document.getElementById("UpdateCustomerPhno").value;
-      const email = document.getElementById("UpdateCustomerEmail").value;
-      const additionalInfo = document.getElementById("UpdateCustomerAdi").value;
+      function UpdateCustomerinfo() {
+        // Get the form values
+        const customerID = document.getElementById("UpdateCustomerId").value.trim();
+        const firstName = document.getElementById("UpdateCustomerFirstName").value;
+        const lastName = document.getElementById("UpdateCustomerLastName").value;
+        const gender = document.getElementById("UpdateCustomerGender").value;
+        const occupation = document.getElementById("UpdateCustomerOccupation").value;
+        const location = document.getElementById("UpdateCustomerLocation").value;
+        const phoneNumber = document.getElementById("UpdateCustomerPhno").value;
+        const email = document.getElementById("UpdateCustomerEmail").value;
+        const additionalInfo = document.getElementById("UpdateCustomerAdi").value;
+        const image = document.getElementById("UpdateCustomerImage").value;
 
-      if(customerID !== customerobject.customerID || firstName !== customerobject.firstName || lastName !== customerobject.lastName || gender !== customerobject.gender || occupation !== customerobject.occupation || location !== customerobject.location || phoneNumber !== customerobject.phoneNumber || email !== customerobject.email || additionalInfo !== customerobject.additionalInfo){
+        if (customerID !== customerobject.customerID || firstName !== customerobject.firstName || lastName !== customerobject.lastName || gender !== customerobject.gender || occupation !== customerobject.occupation || location !== customerobject.location || phoneNumber !== customerobject.phoneNumber || email !== customerobject.email || additionalInfo !== customerobject.additionalInfo) {
 
-        // create customer object
-        const customerobjectforupdate = {
-          customerID: customerID,
-          firstName: firstName,
-          lastName: lastName,
-          gender: gender,
-          occupation: occupation,
-          location: location,
-          phoneNumber: phoneNumber,
-          email: email,
-          additionalInfo: additionalInfo
-        };
-        // update customer object
-        updateCustomer(customerIndex, customerobjectforupdate);
-        UpdateCustomerModal.hide();
-        document.getElementById("customerFormUpdate").reset();
+          // create customer object
+          const customerobjectforupdate = {
+            customerID: customerID,
+            img: image,
+            firstName: firstName,
+            lastName: lastName,
+            occupation: occupation,
+            gender: gender,
+            location: location,
+            email: email,
+            phoneNumber: phoneNumber,
+            additionalInfo: additionalInfo
+
+
+          };
+          // update customer object
+          updateCustomer(customerIndex, customerobjectforupdate);
+          UpdateCustomerModal.hide();
+          document.getElementById("customerFormUpdate").reset();
         }
-        else{
+        else {
           console.log("No changes made..!");
         }
-      
+
       }
-      
+
 
     }
   }
