@@ -61,6 +61,16 @@ document.getElementById("customers-grid").addEventListener("click", function (ev
 
     if (customerobject) {
 
+      //assighments
+      document.getElementById("viewCustomerId").textContent = customerobject.customerID;
+      document.getElementById("viewCustomerName").textContent = customerobject.firstName + " " + customerobject.lastName;
+      document.getElementById("viewCustomerGender").textContent = customerobject.gender;
+      document.getElementById("viewCustomerOccupation").textContent = customerobject.occupation;
+      document.getElementById("viewCustomerLocation").textContent = customerobject.location;
+      document.getElementById("viewCustomerPhno").textContent = customerobject.phoneNumber;
+      document.getElementById("viewCustomerEmail").textContent = customerobject.email;
+      document.getElementById("viewCustomerAdi").textContent = customerobject.additionalinfo;
+      
 
       // Show the view product modal
       const viewCustomerModal = new bootstrap.Modal(document.getElementById("ViewCustomerModal"));
