@@ -237,6 +237,7 @@ function searchProducts(searchTerm) {
 
 
 
+
 // card click events (view, delete, edit) .......
 
 document.getElementById("items-grid").addEventListener("click", function (event) {

@@ -79,8 +79,42 @@ function addNewCustomer() {
   console.log(Customers);
 }
 
+//search function
+const searchInput = document.getElementById("SearchCustomers");
+searchInput.addEventListener("input", () => {
+  const searchTerm = searchInput.value.toLowerCase();
+  searchCustomers(searchTerm);
+});
 
+function searchCustomers(searchTerm) {
+  const customers = getCustomers();
+  const filteredCustomers = customers.filter((customer) => customer.firstName.toLowerCase().includes(searchTerm) || customer.lastName.toLowerCase().includes(searchTerm));
+  displayCustomers(filteredCustomers);
+}
 
+function displayCustomers(customers) {
+  const customersGrid = document.getElementById("customers-grid");
+  customersGrid.innerHTML = "";
+  customers.forEach((customer, index) => {
+    customersGrid.innerHTML += `
+      <div class="col mb-3">
+        <div class="card h-100">
+          <img src="/Images and lcons/man.png" class="card-img-top" alt="Item 1">
+          <div class="card-body text-center pt-0">
+            <hr class="my-1">
+            <h5 class="card-title">${customer.firstName} ${customer.lastName}</h5>
+            <p class="card-text">${customer.phoneNumber}</p>
+            <div class="d-flex justify-content-center gap-2 mt-3">
+              <a href="#" class="view-customer"><i class="bi bi-eye-fill p-3" data-index="${index}"></i></a>
+              <a href="#" class="delete-customer"><i class="bi bi-trash p-3 text-danger" data-index="${index}"></i></a>
+              <a href="#" class="edit-customer"><i class="bi bi-pencil-square p-3" data-index="${index}"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  });
+}
 
 
 
