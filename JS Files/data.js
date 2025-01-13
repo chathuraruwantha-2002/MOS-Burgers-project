@@ -268,6 +268,153 @@ let productList = {
     },
   ];
 
+  //Orders details
+
+ // Orders details
+
+let orderList = [
+  {
+    customerId: 1,
+    customerName: "Saman Silva",
+    phoneNumber: "0776775195",
+    address: "123 Meen Veediya, Mahanuwara",
+    orderId: "P001",
+    items: [
+      {
+        itemCode: "B1001",
+        name: "Parani Burger",
+        quantity: 2,
+        price: 1500.0,
+        discount: 0,
+        img: "../assets/images/Burger-Category/chicken-burger.webp"
+      },
+      {
+        itemCode: "B10026",
+        name: "French Fries",
+        quantity: 1,
+        price: 800.0,
+        discount: 0,
+        img: "../assets/images/Burger-Category/chicken-burger.webp"
+      },
+      {
+        itemCode: "B10032",
+        name: "Pepsi (330ml)",
+        quantity: 1,
+        price: 990.0,
+        discount: 0,
+        img: "../assets/images/Burger-Category/chicken-burger.webp"
+      }
+    ],
+    additionalInfo: "",
+    date: "3/10/2024",
+    totalItems: 4,
+    subTotal: 4790.0,
+    discount: 19.8,
+    totalAmount: 4770.2
+  },
+  {
+    customerId: 2,
+    customerName: "Anura Perera",
+    phoneNumber: "0771234567",
+    address: "456 Galle Road, Colombo",
+    orderId: "P002",
+    items: [
+      {
+        itemCode: "B10011",
+        name: "Double Cheese Chicken Submarine",
+        quantity: 1,
+        price: 1900.0,
+        discount: 0,
+        img: "../assets/images/Burger-Category/chicken-burger.webp"
+      },
+      {
+        itemCode: "B10033",
+        name: "Coca-Cola (330ml)",
+        quantity: 2,
+        price: 1230.0,
+        discount: 0,
+        img: "../assets/images/Burger-Category/chicken-burger.webp"
+      }
+    ],
+    additionalInfo: "",
+    date: "3/10/2024",
+    totalItems: 3,
+    subTotal: 4360.0,
+    discount: 304.0,
+    totalAmount: 4056.0
+  },
+  {
+    customerId: 3,
+    customerName: "Kumari Wijesinghe",
+    phoneNumber: "0779234561",
+    address: "789 Beach Road, Galle",
+    orderId: "P003",
+    items: [
+      {
+        itemCode: "B10018",
+        name: "Chicken Cheese Pasta",
+        quantity: 1,
+        price: 1600.0,
+        discount: 0,
+        img: "../assets/images/Burger-Category/chicken-burger.webp"
+      },
+      {
+        itemCode: "B1005",
+        name: "Crispy Chicken Burger",
+        quantity: 1,
+        price: 1200.0,
+        discount: 0,
+        img: "../assets/images/Burger-Category/chicken-burger.webp"
+      },
+      {
+        itemCode: "B10034",
+        name: "Sprite (330ml)",
+        quantity: 1,
+        price: 1500.0,
+        discount: 0,
+        img: "../assets/images/Burger-Category/chicken-burger.webp"
+      }
+    ],
+    additionalInfo: "",
+    date: "3/10/2024",
+    totalItems: 3,
+    subTotal: 4300.0,
+    discount: 285.0,
+    totalAmount: 4015.0
+  },
+  {
+    customerId: 4,
+    customerName: "Sarath Fernando",
+    phoneNumber: "0711123456",
+    address: "101 Church Street, Negombo",
+    orderId: "P004",
+    items: [
+      {
+        itemCode: "B1009",
+        name: "Double Cheese Burger",
+        quantity: 1,
+        price: 1250.0,
+        discount: 0,
+        img: "../assets/images/Burger-Category/chicken-burger.webp"
+      },
+      {
+        itemCode: "B10025",
+        name: "Steak Fries",
+        quantity: 1,
+        price: 1200.0,
+        discount: 0,
+        img: "../assets/images/Burger-Category/chicken-burger.webp"
+      }
+    ],
+    additionalInfo: "",
+    date: "3/10/2024",
+    totalItems: 2,
+    subTotal: 2450.0,
+    discount: 250.0,
+    totalAmount: 2200.0
+  }
+];
+
   //items
 
   export function getProducts() {
@@ -316,4 +463,27 @@ let productList = {
    alert("Customer Added Successfully...!");
  }
  
+
+
+  //Orders
+  export function getOrders() {
+    return orderList;
+  }
+  export function SearchOrderUsingIndex(index) {
+    return orderList[index];
+  }
+  export function deleteOrder(index) {  
+    (orderList.splice(index, 1));
+  }
+  export function updateOrder(index, updatedOrder) {  
+    orderList[index] = updatedOrder;
+    console.log("Order Updated Successfully...!");
+    alert("Order Updated Successfully...!");
+  }
+  export function addOrder(newOrder) {
+    orderList.push(newOrder);
+    console.log("Order Added Successfully...!");
+    alert("Order Added Successfully...!");
+  }
+
   

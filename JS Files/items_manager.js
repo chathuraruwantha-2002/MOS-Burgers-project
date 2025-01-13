@@ -212,8 +212,6 @@ function addNewProduct() {
 }
 
 
-
-
 //search function
 
 const searchInput = document.getElementById("SearchItems");
@@ -233,8 +231,6 @@ function searchProducts(searchTerm) {
     }
   });
 }
-
-
 
 
 
