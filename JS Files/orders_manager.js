@@ -1,4 +1,4 @@
-import { getOrders } from "./data.js";
+import { getOrders,SearchOrderUsingIndex,deleteOrder,searchOrderByOrderId } from "./data.js";
 
 let orderList = getOrders();
 
@@ -50,6 +50,19 @@ document.getElementById('search-order').addEventListener('input', () => {
     });
 });
 
+//delete order
+document.addEventListener('click', (event) => {
+    if (event.target.classList.contains('bi-trash-fill')) {
+        const row = event.target.closest('tr');
+        const orderId = row.querySelector('td:nth-child(1)').textContent;
+        const confirmDelete = confirm(`Are you sure you want to delete order ${orderId} ?`);
+        if (confirmDelete) {
+            row.remove();
+            deleteOrder(searchOrderByOrderId(orderId));
+            console.log(orderList);
+        }
+    }
+});
 
 
 

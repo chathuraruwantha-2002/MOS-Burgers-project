@@ -270,8 +270,6 @@ let productList = {
 
   //Orders details
 
- // Orders details
-
 let orderList = [
   {
     customerId: 1,
@@ -472,6 +470,11 @@ let orderList = [
   export function SearchOrderUsingIndex(index) {
     return orderList[index];
   }
+  //search order index using order id
+  export function searchOrderByOrderId(orderId) {
+    return orderList.findIndex(order => order.orderId === orderId);
+  }
+
   export function deleteOrder(index) {  
     (orderList.splice(index, 1));
   }
