@@ -33,3 +33,23 @@ document.addEventListener('DOMContentLoaded', () => {
         tableBody.appendChild(row);
     });
 });
+
+//search order
+document.getElementById('search-order').addEventListener('input', () => {
+    const searchQuery = document.getElementById('search-order').value.toLowerCase();
+    const tableRows = document.querySelectorAll('tbody tr');
+    tableRows.forEach(row => {
+        const orderId = row.querySelector('td:nth-child(1)').textContent.toLowerCase();
+        const customerName = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+        const phoneNumber = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+        if (customerName.includes(searchQuery)|| orderId.includes(searchQuery) || phoneNumber.includes(searchQuery)) {
+            row.style.display = 'table-row';
+        } else {
+            row.style.display = 'none';
+        }
+    });
+});
+
+
+
+
