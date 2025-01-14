@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <td class="status-completed">Completed</td>
             <td>${order.totalAmount}</td>
             <td class="action-icons">
-                <a href="#" class="text-primary"><i class="bi bi-pencil-square"></i></a>
+                <a href="#" class="text-primary"><i class="bi bi-eye-fill"></i></a>
                 <a href="#" class="text-danger"><i class="bi bi-trash-fill"></i></a>
             </td>
         `;
@@ -64,5 +64,39 @@ document.addEventListener('click', (event) => {
     }
 });
 
+//view order
+document.addEventListener('click', (event) => {
+    if (event.target.classList.contains('bi-eye-fill')) {
+        const row = event.target.closest('tr');
+        const orderId = row.querySelector('td:nth-child(1)').textContent;
+        const order = SearchOrderUsingIndex(searchOrderByOrderId(orderId));
+        console.log(order);
+
+        if (order) {
+            ViewOrderDetails(order);
+        }else{
+            alert("Order Not Found...!");
+        }
+    }
+});
+
+function ViewOrderDetails(order) {
+    
+    document.getElementById('viewOrderId').textContent = order.orderId;
+    document.getElementById('viewCustomerName').textContent = order.customerName;
+    document.getElementById('viewCustomerPhno').textContent = order.phoneNumber;    
+    document.getElementById('viewCustomerAddress').textContent = order.address;
+    //document.getElementById('viewOrderItems').textContent = order.items;
+    document.getElementById('viewOrderAdi').textContent = order.additionalInfo;
+    document.getElementById('viewOrderdate').textContent = order.date;
+    document.getElementById('viewOrderItems').textContent = order.totalItems;
+    document.getElementById('viewOrderSubTotal').textContent = order.subTotal.toFixed(2);
+    document.getElementById('viewOrderDiscount').textContent = order.discount.toFixed(2);
+    document.getElementById('viewOrderTotal').textContent = order.totalAmount.toFixed(2);
+
+    const UpdateOrderModal = new bootstrap.Modal(document.getElementById("ViewOrderModal"));
+    UpdateOrderModal.show();
+
+}   
 
 
