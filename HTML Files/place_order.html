@@ -103,20 +103,20 @@
                         <input type="text" class="form-control mb-2" placeholder="Customer Name">
                         <textarea class="form-control mb-2" id="cart-section" rows="3" placeholder="Cart details"></textarea>
                         <input type="text" class="form-control mb-2" placeholder="Additional details">
-                        <input type="text" class="form-control mb-2 col-4" placeholder="Add Discount">
+                        <input type="text" class="form-control mb-2 col-4" placeholder="Add Discount" id="add-discount">
 
                         <!-- Price & Details -->
                         <div class="row">
                             <!-- Price Details -->
                             <div class="col-sm-6 p-3 ">
-                                <h3 class="mb-2">Price : Rs 0.00</h3>
-                                <p class="mb-1 ">Sub Total : Rs 0.00</p>
-                                <p class="mb-0 ">Discount : Rs 0.00</p>
+                                <h3 class="mb-2" id="viewOrderTotal">Total : Rs 0.00</h3>
+                                <p class="mb-1 " id="viewOrderSubTotal">Sub Total : Rs 0.00</p>
+                                <p class="mb-0 " id="viewOrderDiscount">Discount : Rs 0.00</p>
                             </div>
 
                             <!-- 'Place Order, Clear' Buttons -->
                             <div class="col-sm-5 d-flex flex-column justify-content-end m-2">
-                                <button class="btn btn-place-order w-100 mb-2">Place Order</button>
+                                <button class="btn btn-place-order w-100 mb-2" id="btn-place-order">Place Order</button>
                                 <button class="btn btn-clear w-100 mb-2">Clear</button>
                             </div>
 

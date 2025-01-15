@@ -128,7 +128,7 @@ document.addEventListener("DOMContentLoaded", function () {
 // Add items to the place order cart
 document.getElementById("items-grid").addEventListener("click", function (event) {
   const card = event.target.closest('.card');
-  
+
   if (!card) {
     console.warn("No card element found.");
     return;
@@ -150,7 +150,7 @@ document.getElementById("items-grid").addEventListener("click", function (event)
 
   // Initialize the cartItems object if not already defined
   if (!window.cartItems) {
-    window.cartItems = {}; 
+    window.cartItems = {};
   }
 
   //qty update
@@ -166,6 +166,7 @@ document.getElementById("items-grid").addEventListener("click", function (event)
   }
 
   updateCart();
+  
 });
 
 // update cart section text area
@@ -175,7 +176,7 @@ function updateCart() {
 
   for (let item in window.cartItems) {
     const { name, price, quantity } = window.cartItems[item];
-    
+
 
     // format the text for display
     const lineWidth = 50;
@@ -184,7 +185,63 @@ function updateCart() {
 
     cartSection.value += `${formattedText}\n`;
   }
+
 }
+
+//order calculations
+
+function SubTotal() {
+  let totalAmount = 0;
+  for (let item in window.cartItems) {
+    const price = parseFloat(window.cartItems[item].price);
+    totalAmount += price;
+  }
+  return totalAmount;
+}
+
+function discount() {
+  const discountInput = document.getElementById("add-discount");
+  const discount = parseFloat(discountInput.value);
+
+  if (isNaN(discount) || discount < 0) {
+    return 0;
+  }
+
+  return (SubTotal() * discount) / 100;
+}
+
+function displayOrderCalculationsandCatchData() {
+  const totalAmount = SubTotal();
+  const discountAmount = discount();
+  const grandTotal = totalAmount - discountAmount;
+  document.getElementById("viewOrderSubTotal").textContent = `Sub Total : Rs ${totalAmount.toFixed(2)}`;
+  document.getElementById("viewOrderDiscount").textContent = `Discount : Rs ${discountAmount.toFixed(2)}`;
+  document.getElementById("viewOrderTotal").textContent = `Total : Rs ${grandTotal.toFixed(2)}`;
+
+  //create order object (items details, totalItems, subTotal, discount, totalAmount)
+  window.order = {
+    items: window.cartItems,
+    totalItems: Object.keys(window.cartItems).length,
+    subTotal: totalAmount,
+    discount: discountAmount,
+    totalAmount: grandTotal
+  }
+  console.log(window.order);
+}
+
+// Discount trigger - runs once when leaving the discount input field
+const discountInput = document.getElementById("add-discount");
+discountInput.addEventListener("blur", function () {
+  displayOrderCalculationsandCatchData();
+  console.log("Discount Triggered");
+});
+
+// place order
+document.getElementById("btn-place-order").addEventListener("click", function () {
+  displayOrderCalculationsandCatchData();
+  console.log("Place Order Triggered");
+});
+
 
 //search bar
 const searchInput = document.getElementById("SearchItems");
