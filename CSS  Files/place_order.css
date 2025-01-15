@@ -127,8 +127,12 @@ textarea.form-control {
     margin-top: 20px;
     margin-bottom: 20px;
     height: auto;
+}
+.card {
+    border-radius: 10px;
+    transition: transform 0.3s ease-in-out;
+    margin: 0;
 }   
-
 .card-body{
     padding: 4px;
 }
@@ -141,4 +145,7 @@ textarea.form-control {
     text-align: center;
     font-size: 17px;
     color: #e21c1c;
+}
+.card:hover {
+    transform: scale(1.05);
 }

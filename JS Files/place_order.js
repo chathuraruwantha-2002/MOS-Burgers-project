@@ -1,4 +1,4 @@
-import { getProducts } from "./data.js";
+import { getProducts, SearchProductUsingIndex } from "./data.js";
 console.log("Place Order Page Loaded...");
 
 
@@ -20,7 +20,7 @@ categoryIcons.forEach((icon) => {
       for (let i = 0; i < items.Burgers.length; i++) {
         document.getElementById("items-grid").innerHTML +=
           `<div class="col mb-3">
-             <div class="card h-100">
+             <div class="card h-100" data-index="${i}" data-category="Burgers">
                  <img src="/Images and lcons/turkey-burger.png" class="card-img-top" alt="Item 1">
                  <div class="card-body text-center pt-0">
                      <hr class="my-1">
@@ -37,7 +37,7 @@ categoryIcons.forEach((icon) => {
       for (let i = 0; i < items.Pasta.length; i++) {
         document.getElementById("items-grid").innerHTML +=
           `<div class="col mb-3">
-             <div class="card h-100">
+             <div class="card h-100" data-index="${i}" data-category="Pasta">
                  <img src="/Images and lcons/pasta.png" class="card-img-top" alt="Item 1">
                  <div class="card-body text-center pt-0">
                      <hr class="my-1">
@@ -53,7 +53,7 @@ categoryIcons.forEach((icon) => {
       for (let i = 0; i < items.Chicken.length; i++) {
         document.getElementById("items-grid").innerHTML +=
           `<div class="col mb-3">
-             <div class="card h-100">
+             <div class="card h-100" data-index="${i}" data-category="Chicken">
                  <img src="/Images and lcons/chicken.png" class="card-img-top" alt="Item 1">
                  <div class="card-body text-center pt-0">
                      <hr class="my-1">
@@ -70,7 +70,7 @@ categoryIcons.forEach((icon) => {
       for (let i = 0; i < items.Fries.length; i++) {
         document.getElementById("items-grid").innerHTML +=
           `<div class="col mb-3">
-             <div class="card h-100">
+             <div class="card h-100" data-index="${i}" data-category="Fries">
                  <img src="/Images and lcons/fries.png" class="card-img-top" alt="Item 1">
                  <div class="card-body text-center pt-0">
                      <hr class="my-1">
@@ -86,7 +86,7 @@ categoryIcons.forEach((icon) => {
       for (let i = 0; i < items.Submarines.length; i++) {
         document.getElementById("items-grid").innerHTML +=
           `<div class="col mb-3">
-             <div class="card h-100">
+             <div class="card h-100" data-index="${i}" data-category="Submarines">
                  <img src="/Images and lcons/Submarine bun.png" class="card-img-top" alt="Item 1">
                  <div class="card-body text-center pt-0">
                      <hr class="my-1">
@@ -102,8 +102,8 @@ categoryIcons.forEach((icon) => {
       for (let i = 0; i < items.Beverages.length; i++) {
         document.getElementById("items-grid").innerHTML +=
           `<div class="col mb-3">
-             <div class="card h-100">
-                 <img src="/Images and lcons/bevarages.png" class="card-img-top" alt="Item 1">
+             <div class="card h-100" data-index="${i}" data-category="Beverages">
+                 <img src="/Images and lcons/bevarages.png">
                  <div class="card-body text-center pt-0">
                      <hr class="my-1">
                      <h5 class="card-title">${items.Beverages[i].name}</h5>
@@ -118,8 +118,34 @@ categoryIcons.forEach((icon) => {
 
 // Trigger the "Burgers" category items on page load
 document.addEventListener("DOMContentLoaded", function () {
-    const burgersIcon = document.getElementById("category-1");
-    if (burgersIcon) {
-      burgersIcon.click();
-    }
-  });
+  const burgersIcon = document.getElementById("category-1");
+  if (burgersIcon) {
+    burgersIcon.click();
+  }
+});
+
+
+//card click
+document.getElementById("items-grid").addEventListener("click", function (event) {
+  const card = event.target.closest('.card');
+  
+  if (!card) {
+    console.warn("No card element found.");
+    return;
+  }
+
+  const itemIndex = card.dataset.index;
+  const itemCategory = card.dataset.category;
+
+  if (!itemIndex || !itemCategory) {
+    console.warn("Required data attributes are missing.");
+    return;
+  }
+
+  const itemObject = SearchProductUsingIndex(itemIndex, itemCategory);
+
+  console.log("Item Index:", itemIndex);
+  console.log("Item Category:", itemCategory);
+  console.log("Item Object:", itemObject);
+
+});
